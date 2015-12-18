@@ -74,8 +74,8 @@ and st_geometrytype(s.geom)='ST_Polygon';
 select
 tr.iladi
 from
-mapdata.tr_iller tr,
-mapdata.tr_iller ank
+tr_iller tr,
+tr_iller ank
 where
 tr.gid != ank.gid and
 ank.iladi='Ankara' and
