@@ -38,22 +38,23 @@ insert into spatialdata (geom)
 SELECT ST_GeomFromText('LINESTRING(26.809505 40.055404,29.462703 38.666675)',4326);
 
 --spatial olamayan bir tabloyu spatial hale şu şekilde de getirebilirdik
---addgeometrycolumn fonksiyonu ile şema adı, tablo adı, geometri kolonu adı, obje tipi ve obje boyutu vererek ilgili kolonu oluşturabiliriz
+--addgeometrycolumn fonksiyonu ile şema adı, tablo adı, geometri kolonu adı, 
+--projeksiyon, obje tipi ve obje boyutu vererek ilgili kolonu oluşturabiliriz
 SELECT AddGeometryColumn ('public','spatialdata','geom2',4326,'POINT',2);
 
 --aynı klasördeki tr_iller backup dosyasını pg_restore kullanarak ya da 
 --pgadminIII ile veritabanına sağ tuş tıklayıp restore işlemi ile yükleyelim
 
---alttaki sorgu ile spatialdata tablosundaki nokta objesinin yaklaşım 1 km yakınında hangi iller göreceğiz
---st_dwithin fonksiyonuna iki geometri bir de mesafe girer
+--alttaki sorgu ile spatialdata tablosundaki nokta objesinin yaklaşık 1 km yakınında illeri listeleyeceğiz
+--st_dwithin fonksiyonuna iki geometri bir de mesafe girer, boolean bir değer döner
 --bu foksiyon gist indexini kullanır bu yüzden çok performanslı bir sorgudur
 --bunun yerine st_buffer ve st_intersects de kullanılabilir
---nota objesini bulmak için ge st_geometrytype fonksiyonunu kullanıyoruz
+--nokta objesini bulmak için st_geometrytype fonksiyonunu kullanıyoruz
 --buradaki 0.001 değeri coğrafi projeksiyonda yaklaşık 1 km uzaklığa denk gelir
 select iladi from tr_iller i, spatialdata s where st_dwithin(s.geom,i.geom,0.001)
 and st_geometrytype(s.geom)='ST_Point';
 
---yine aynı noktaya 70 km yakınlıktaki illeri listeledik
+--yine aynı noktaya 70 km yakınlıktaki illeri listeleyelim
 --bu sefer mesafe için utm projeksiyon kullandık
 --daha detaylı bilgi için şuraya bakabilirsiniz http://spatialreference.org/ref/epsg/wgs-84-utm-zone-37n/
 --projeksiyon dönüşümü için st_transform fonksiyonunu kullanıyoruz
@@ -63,7 +64,7 @@ st_dwithin(st_transform(s.geom,32637),st_transform(i.geom,32637),70000)
 and st_geometrytype(s.geom)='ST_Point';
 
 --poligon objesine değen illeri listeliyoruz
---bu sefer st_dwithin yerine st_intersects kullanıyoruz
+--bu sefer st_dwithin yerine st_intersects kullanalım
 select iladi from tr_iller i, spatialdata s where st_intersects(s.geom,i.geom)
 and st_geometrytype(s.geom)='ST_Polygon';
 
