@@ -42,7 +42,7 @@ SELECT ST_GeomFromText('LINESTRING(26.809505 40.055404,29.462703 38.666675)',432
 --projeksiyon, obje tipi ve obje boyutu vererek ilgili kolonu oluşturabiliriz
 SELECT AddGeometryColumn ('public','spatialdata','geom2',4326,'POINT',2);
 
---aynı klasördeki tr_iller backup dosyasını pg_restore kullanarak ya da 
+--data klasöründeki tr_iller backup dosyasını pg_restore kullanarak ya da 
 --pgadminIII ile veritabanına sağ tuş tıklayıp restore işlemi ile yükleyelim
 
 --alttaki sorgu ile spatialdata tablosundaki nokta objesinin yaklaşık 1 km yakınında illeri listeleyeceğiz
