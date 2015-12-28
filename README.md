@@ -1,4 +1,4 @@
-#10 çalışma paketi içeren Postgis eğitimi.
+#10 çalışma paketi içeren Postgis Eğitimi
 Gerçek anlatımla yaklaşık 2 gün sürer.
 
 #Gereksinimler,
