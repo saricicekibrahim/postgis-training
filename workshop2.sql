@@ -61,7 +61,7 @@ select st_astext(st_pointn(geom,1)),
 
 --koordinatları altta tanımlı nokta
 --spatialdata tablosundaki line objesinin bitiş noktasına
---yaklaşık 5 km yakınlıkta mı sorgusu
+--yaklaşık 500 m yakınlıkta mı sorgusu
 --line objesi bir rota diyelim. kullanıcı bu rotayı bitirdi mi bitirmedi mi bu şekilde anlayabiliriz
  select st_dwithin(
 	st_endpoint(geom),
@@ -73,7 +73,7 @@ st_geometrytype(geom) = 'ST_LineString'
 
 --yukarıdaki sorgunun aynısı st_buffer ve st_intersects içerecek şekilde alttaki yapalım
 --geometri kolonunda bir gist index tanımlıysa yukarıdaki sorgu bu indexi kullanır, alttaki sorgu kullanmaz!
---line objesinin son noktasına yaklaşık 5 km'lik bir tampon tanımlıyoruz
+--line objesinin son noktasına yaklaşık 500 m'lik bir tampon tanımlıyoruz
 --tanımlı nokta bu tampona değiyor mu sorgusu
 select st_intersects(
 	st_buffer(st_endpoint(geom), 0.005),

@@ -45,12 +45,12 @@ SELECT AddGeometryColumn ('public','spatialdata','geom2',4326,'POINT',2);
 --data klasöründeki tr_iller backup dosyasını pg_restore kullanarak ya da 
 --pgadminIII ile veritabanına sağ tuş tıklayıp restore işlemi ile yükleyelim
 
---alttaki sorgu ile spatialdata tablosundaki nokta objesinin yaklaşık 1 km yakınında illeri listeleyeceğiz
+--alttaki sorgu ile spatialdata tablosundaki nokta objesinin yaklaşık 100 m yakınında illeri listeleyeceğiz
 --st_dwithin fonksiyonuna iki geometri bir de mesafe girer, boolean bir değer döner
 --bu foksiyon gist indexini kullanır bu yüzden çok performanslı bir sorgudur
 --bunun yerine st_buffer ve st_intersects de kullanılabilir
 --nokta objesini bulmak için st_geometrytype fonksiyonunu kullanıyoruz
---buradaki 0.001 değeri coğrafi projeksiyonda yaklaşık 1 km uzaklığa denk gelir
+--buradaki 0.001 değeri coğrafi projeksiyonda yaklaşık 100 m uzaklığa denk gelir
 select iladi from tr_iller i, spatialdata s where st_dwithin(s.geom,i.geom,0.001)
 and st_geometrytype(s.geom)='ST_Point';
 
