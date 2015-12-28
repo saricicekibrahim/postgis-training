@@ -1,5 +1,6 @@
 ﻿--ilgili noktaya 2 km mesafedeki tüm yolların adını ve 
 --noktaya olan uzaklıklarını listeler
+
 CREATE OR REPLACE FUNCTION route_intersect_v3(
 	lon double precision,
 	lat double precision,
@@ -9,7 +10,6 @@ CREATE OR REPLACE FUNCTION route_intersect_v3(
 $BODY$
 	DECLARE
 		point geometry;
-		returnVal route_intersect_type_v2;
 		bbxDist double precision;
 	BEGIN
 		select st_setsrid(st_makepoint(lon, lat),4326) into point;
