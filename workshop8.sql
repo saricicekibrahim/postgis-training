@@ -4,7 +4,10 @@
    roadname character varying
    );
 
-
+--id'si verilen rota
+--ilgili noktanın 2 km yakınında ise (bu 2 km performans için veriyoruz tüm tablodaki 
+--kayıtlara bakmaktansa yalnız 2 km çapında bir daire içinde kalan yollara baksın)
+--uzaklığını ve bboxlarının birbirine değip değmediğini verir
 CREATE OR REPLACE FUNCTION route_intersect_v2(
     int1 integer,
 	lon double precision,
