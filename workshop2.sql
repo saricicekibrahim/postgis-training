@@ -26,7 +26,7 @@ select st_srid(geom) from spatialdata2
 --yine tanımsız projeksiyonu olan objeleri şu şekilde updata edebilirsiniz
 --burada bir kez daha hatırlatayım projeksiyon dönüşümü için st_transform kullanılır
 --burada sadece set ediyoruz
-update spatialdata2 set geom =st_setsrid(geom,432)
+update spatialdata2 set geom =st_setsrid(geom,4326)
 
 --tanımlı bir projeksiyonu olan objeleri projeksiyon dönüşümü için şu sorguyu kullnaalım
 update spatialdata2 set geom2 = st_transform(geom,900913)
