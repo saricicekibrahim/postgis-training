@@ -1,3 +1,5 @@
+--Postgresql rgb to hex color converter function
+
 CREATE OR REPLACE FUNCTION rgbtohex(_rgb text) RETURNS text AS $$
 	declare rgbarr text[];
 	red text;
