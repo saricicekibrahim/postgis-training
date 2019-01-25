@@ -1,3 +1,6 @@
+-- bu dokuman udemy'de postgis kursundaki tüm sql leri kapsamaktadır
+-- https://www.udemy.com/postgis-egitimi-turkce-postgis-in-turkish
+
 create extension postgis;
 
 --postgis versiyon ve kullandığı kütüphane ersiyonları gösterirselect PostGIS_Full_Version();
